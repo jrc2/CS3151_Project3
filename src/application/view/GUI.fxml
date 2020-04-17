@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="application.view.GUICodeBehind">
+   <children>
+      <MenuBar layoutY="-2.0" prefHeight="32.0" prefWidth="559.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Pane fx:id="startPane" layoutY="29.0" prefHeight="454.0" prefWidth="559.0" style="-fx-background-color: white;">
+         <children>
+            <Text fx:id="welcomeMessageText" layoutX="36.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to the Animal Game!">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+            <Text fx:id="iWonText" layoutX="231.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I won!" visible="false">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+            <Text layoutX="79.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Think of an animal and start the game">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Button defaultButton="true" layoutX="238.0" layoutY="266.0" mnemonicParsing="false" onAction="#startButtonAction" text="Start">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+            <Pane fx:id="animalGuessPane" layoutX="-1.0" prefHeight="454.0" prefWidth="559.0" style="-fx-background-color: white;" visible="false">
+               <children>
+                  <Text layoutX="196.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Is your animal a">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="animalGuessText" layoutX="11.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?" textAlignment="CENTER" wrappingWidth="535.40625">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="correctAnimalGuessButton" layoutX="201.0" layoutY="202.0" mnemonicParsing="false" onAction="#correctAnimalGuessedClick" text="Yes">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="incorrectAnimalGuessButton" layoutX="290.0" layoutY="202.0" mnemonicParsing="false" text="No">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <Pane fx:id="youWonPane" layoutX="-1.0" prefHeight="454.0" prefWidth="559.0" style="-fx-background-color: white;" visible="false">
+               <children>
+                  <Text layoutX="201.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You Won!">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Text>
+                  <Label layoutX="37.0" layoutY="111.0" text="Enter the animal you were thinking of:" />
+                  <TextField fx:id="animalThinkingOfField" layoutX="37.0" layoutY="132.0" prefHeight="31.0" prefWidth="486.0" />
+                  <Label layoutX="37.0" layoutY="193.0" prefHeight="21.0" prefWidth="482.0" text="Enter a question that distinguishes your animal from the animal that" />
+                  <Label layoutX="37.0" layoutY="212.0" text="was guessed:" />
+                  <TextField fx:id="animalQuestionField" layoutX="37.0" layoutY="233.0" prefHeight="31.0" prefWidth="486.0" />
+                  <Label layoutX="38.0" layoutY="294.0" text="What is the answer to your question for the animal you were thinking of?" />
+                  <RadioButton fx:id="answerYesRadioButton" layoutX="98.0" layoutY="327.0" mnemonicParsing="false" selected="true" text="Yes">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="answerRadioButtons" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="answerNoRadioButton" layoutX="190.0" layoutY="327.0" mnemonicParsing="false" text="No" toggleGroup="$answerRadioButtons" />
+                  <Button layoutX="240.0" layoutY="380.0" mnemonicParsing="false" text="Submit">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
