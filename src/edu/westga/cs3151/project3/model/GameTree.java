@@ -11,7 +11,7 @@ import java.util.Iterator;
  */
 public class GameTree<T> implements Iterable<T> {
 	
-	private GameNode<String> root;
+	private GameNode<T> root;
 	
 	/**
 	 * Instantiates a new game tree with given root node.
@@ -21,7 +21,7 @@ public class GameTree<T> implements Iterable<T> {
 	 *
 	 * @param root the root node
 	 */
-	public GameTree(GameNode<String> root) {
+	public GameTree(GameNode<T> root) {
 		this.root = root;
 	}
 	
@@ -33,7 +33,7 @@ public class GameTree<T> implements Iterable<T> {
 	 *
 	 * @return the root node of the game tree
 	 */
-	public GameNode<String> getRoot() {
+	public GameNode<T> getRoot() {
 		return this.root;
 	}
 	
@@ -45,7 +45,7 @@ public class GameTree<T> implements Iterable<T> {
 	 *
 	 * @param root the new root node
 	 */
-	public void setRoot(GameNode<String> root) {
+	public void setRoot(GameNode<T> root) {
 		this.root = root;
 	}
 
