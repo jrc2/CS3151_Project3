@@ -1,4 +1,4 @@
-package application.view;
+package edu.westga.cs3151.project3.view;
 
 import java.net.URL;
 import java.util.ResourceBundle;
