@@ -12,19 +12,23 @@ public class GameNode<T> {
 	private T value;
 	private GameNode<T> leftChild;
 	private GameNode<T> rightChild;
+	private boolean isQuestionNode;
 	
 	/**
 	 * Instantiates a new game node.
 	 * 
 	 * @precondition none
 	 * @postcondition this.value==value AND this.leftChild==null AND this.rightChild == null
+	 * 				  AND this.isQuestionNode==isQuestionNode
 	 *
 	 * @param value the value
+	 * @param isQuestionNode true if node contains a question, false if it contains a question
 	 */
-	public GameNode(T value) {
+	public GameNode(T value, boolean isQuestionNode) {
 		this.value = value;
 		this.leftChild = null;
 		this.rightChild = null;
+		this.isQuestionNode = isQuestionNode;
 	}
 
 	/**
@@ -76,14 +80,14 @@ public class GameNode<T> {
 	}
 	
 	/**
-	 * Checks for left chils.
+	 * Checks for left child.
 	 * 
 	 * @precondition none
 	 * @postcondition none
 	 *
 	 * @return true if leftChild!=null, false otherwise
 	 */
-	public boolean hasLeftChile() {
+	public boolean hasLeftChild() {
 		return this.leftChild != null;
 	}
 
@@ -121,6 +125,30 @@ public class GameNode<T> {
 	 */
 	public boolean hasRightChild() {
 		return this.rightChild != null;
+	}
+	
+	/**
+	 * Gets is question node boolean.
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 *
+	 * @return the is question node boolean
+	 */
+	public boolean getIsQuestionNode() {
+		return this.isQuestionNode;
+	}
+	
+	/**
+	 * Sets the is question node boolean.
+	 * 
+	 * @precondition none
+	 * @postcondition this.getIsQuestionNode()==isQuestionNode
+	 *
+	 * @param isQuestionNode the new is question node boolean
+	 */
+	public void setIsQuestionNode(boolean isQuestionNode) {
+		this.isQuestionNode = isQuestionNode;
 	}
 	
 	@Override
