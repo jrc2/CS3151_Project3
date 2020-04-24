@@ -2,6 +2,8 @@ package edu.westga.cs3151.project3.view;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import edu.westga.cs3151.project3.viewmodel.Viewmodel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -18,8 +20,8 @@ import javafx.scene.text.Text;
  */
 public class GUICodeBehind {
 	
-	private static final String DEFAULT_ANIMAL = "koala";
-
+	private Viewmodel viewmodel;
+	
     @FXML
     private ResourceBundle resources;
 
@@ -63,22 +65,36 @@ public class GUICodeBehind {
     private ToggleGroup answerRadioButtons;
 
     @FXML
-    private RadioButton answerNoRadioButton;
-
-    @FXML
     void startButtonAction(ActionEvent event) {
     	this.animalGuessPane.setVisible(true);
     }
     
     @FXML
-    private void correctAnimalGuessedClick(ActionEvent event) {
-    	this.hideAllButStartPane();
+    private void correctGuessClick(ActionEvent event) {
+    	this.hideAllButPane(this.startPane);
     	this.showIWonMessage();
     }
     
-    private void hideAllButStartPane() {
+    @FXML
+    private void incorrectGuessClick(ActionEvent event) {
+    	if (!this.viewmodel.hasChildren()) {
+    		this.hideAllButPane(this.youWonPane);
+    	} else {
+    		//TODO
+    	}
+    }
+    
+    @FXML
+    private void submitNewAnimalClick(ActionEvent event) {
+    	String newAnimalName = this.animalThinkingOfField.getText();
+    	String distinguishingQuestion = this.animalQuestionField.getText();
+    	boolean questionIsTrue = this.answerYesRadioButton.isSelected();
+    }
+    
+    private void hideAllButPane(Pane pane) {
     	this.animalGuessPane.setVisible(false);
     	this.youWonPane.setVisible(false);
+    	pane.setVisible(true);
     }
     
     private void showIWonMessage() {
@@ -87,24 +103,25 @@ public class GUICodeBehind {
     }
     
     private void setAnimalGuess(String animalName) {
-    	this.animalGuessText.setText(animalName + "?");
+    	this.animalGuessText.setText("Is your animal a " + animalName + "?");
     }
 
     @FXML
     void initialize() {
-        assert this.startPane != null : "fx:id=\"startPane\" was not injected: check your FXML file 'GUI.fxml'.";
+    	assert this.startPane != null : "fx:id=\"startPane\" was not injected: check your FXML file 'GUI.fxml'.";
         assert this.welcomeMessageText != null : "fx:id=\"welcomeMessageText\" was not injected: check your FXML file 'GUI.fxml'.";
         assert this.iWonText != null : "fx:id=\"iWonText\" was not injected: check your FXML file 'GUI.fxml'.";
         assert this.animalGuessPane != null : "fx:id=\"animalGuessPane\" was not injected: check your FXML file 'GUI.fxml'.";
         assert this.animalGuessText != null : "fx:id=\"animalGuessText\" was not injected: check your FXML file 'GUI.fxml'.";
         assert this.correctAnimalGuessButton != null : "fx:id=\"correctAnimalGuessButton\" was not injected: check your FXML file 'GUI.fxml'.";
-        assert this.incorrectAnimalGuessButton != null : "fx:id=\"incorrectAnimalGuessButton1\" was not injected: check your FXML file 'GUI.fxml'.";
+        assert this.incorrectAnimalGuessButton != null : "fx:id=\"incorrectAnimalGuessButton\" was not injected: check your FXML file 'GUI.fxml'.";
+        assert this.youWonPane != null : "fx:id=\"youWonPane\" was not injected: check your FXML file 'GUI.fxml'.";
         assert this.animalThinkingOfField != null : "fx:id=\"animalThinkingOfField\" was not injected: check your FXML file 'GUI.fxml'.";
         assert this.animalQuestionField != null : "fx:id=\"animalQuestionField\" was not injected: check your FXML file 'GUI.fxml'.";
         assert this.answerYesRadioButton != null : "fx:id=\"answerYesRadioButton\" was not injected: check your FXML file 'GUI.fxml'.";
         assert this.answerRadioButtons != null : "fx:id=\"answerRadioButtons\" was not injected: check your FXML file 'GUI.fxml'.";
-        assert this.answerNoRadioButton != null : "fx:id=\"answerNoRadioButton1\" was not injected: check your FXML file 'GUI.fxml'.";
 
-        this.setAnimalGuess(DEFAULT_ANIMAL);
+        this.viewmodel = new Viewmodel();
+        this.setAnimalGuess(this.viewmodel.getCurrNodeValue());
     }
 }
