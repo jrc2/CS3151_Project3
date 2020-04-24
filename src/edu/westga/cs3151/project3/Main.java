@@ -7,6 +7,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
 
+/**
+ * The Class Main.
+ * 
+ * @author John Chittam
+ */
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
@@ -19,11 +24,16 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Animal Game");
 			primaryStage.show();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
+	/**
+	 * Launches the application
+	 *
+	 * @param args the launch arguments
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
