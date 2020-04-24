@@ -1,9 +1,9 @@
-package edu.westga.cs3151.project3.view;
+package edu.westga.cs3151.project3.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import edu.westga.cs3151.project3.viewmodel.Viewmodel;
+import edu.westga.cs3151.project3.model.Game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -18,9 +18,9 @@ import javafx.scene.text.Text;
  * 
  * @author John Chittam
  */
-public class GUICodeBehind {
+public class Controller {
 	
-	private Viewmodel viewmodel;
+	private Game game;
 	
     @FXML
     private ResourceBundle resources;
@@ -77,7 +77,7 @@ public class GUICodeBehind {
     
     @FXML
     private void incorrectGuessClick(ActionEvent event) {
-    	if (!this.viewmodel.hasChildren()) {
+    	if (!this.game.hasChildren()) {
     		this.hideAllButPane(this.youWonPane);
     	} else {
     		//TODO
@@ -121,7 +121,7 @@ public class GUICodeBehind {
         assert this.answerYesRadioButton != null : "fx:id=\"answerYesRadioButton\" was not injected: check your FXML file 'GUI.fxml'.";
         assert this.answerRadioButtons != null : "fx:id=\"answerRadioButtons\" was not injected: check your FXML file 'GUI.fxml'.";
 
-        this.viewmodel = new Viewmodel();
-        this.setAnimalGuess(this.viewmodel.getCurrNodeValue());
+        this.game = new Game();
+        this.setAnimalGuess(this.game.getCurrNode().getValue());
     }
 }
