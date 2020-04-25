@@ -30,31 +30,31 @@ public class Game {
 	}
 	
 	/**
-	 * Gets the curr node.
+	 * Gets the current node.
 	 * 
 	 * @precondition none
 	 * @postcondition none
 	 *
-	 * @return the curr node
+	 * @return the current node
 	 */
 	public GameNode<String> getCurrNode() {
 		return this.gameTree.getCurrNode();
 	}
 	
 	/**
-	 * Checks for children.
+	 * Checks if node a child.
 	 * 
 	 * @precondition none
 	 * @postcondition none
 	 *
-	 * @return true if either node has a child, false otherwise
+	 * @return true if node has a child, false otherwise
 	 */
-	public boolean hasChildren() {
+	public boolean hasChild() {
 		return this.gameTree.currNodeHasChild();
 	}
 	
 	/**
-	 * Advances curr node to proper child based on answer to question.
+	 * Advances current node to proper child based on answer to question.
 	 * 
 	 * @precondition none
 	 * @postcondition gameTree.currNode==gameTree.currNode.left || gameTree.currNode==gameTree.currNode.right
@@ -71,7 +71,7 @@ public class Game {
 	}
 	
 	/**
-	 * Sets curr node back to root.
+	 * Sets current node back to root.
 	 * 
 	 * @precondition none
 	 * @postcondition this.gameTree.currNode==this.gameTree.root

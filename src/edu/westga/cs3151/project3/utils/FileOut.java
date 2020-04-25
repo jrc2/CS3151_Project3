@@ -8,7 +8,7 @@ import java.io.FileOutputStream;
 import edu.westga.cs3151.project3.model.GameTree;
 
 /**
- * The Class SaveToXML.
+ * Handles writing files from program.
  * 
  * @author John Chittam
  */

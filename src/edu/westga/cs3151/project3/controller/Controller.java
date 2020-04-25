@@ -78,7 +78,7 @@ public class Controller {
     
     @FXML
     private void correctGuessClick(ActionEvent event) {
-    	if (!this.game.hasChildren()) {
+    	if (!this.game.hasChild()) {
     		this.game.resetGame();
     		this.hideAllButPane(this.startPane);
         	this.showIWonMessage();
@@ -90,7 +90,7 @@ public class Controller {
     
     @FXML
     private void incorrectGuessClick(ActionEvent event) {
-    	if (!this.game.hasChildren()) {
+    	if (!this.game.hasChild()) {
     		this.hideAllButPane(this.youWonPane);
     	} else {
     		this.game.setNodeAfterAnswer(false);

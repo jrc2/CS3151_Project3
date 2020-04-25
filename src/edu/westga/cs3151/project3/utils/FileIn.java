@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 import edu.westga.cs3151.project3.model.GameTree;
 
 /**
- * The Class LoadFromXML.
+ * Handles loading files into program.
  * 
  * @author John Chittam
  */
