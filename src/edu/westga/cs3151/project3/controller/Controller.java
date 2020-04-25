@@ -8,6 +8,8 @@ import edu.westga.cs3151.project3.model.Game;
 import edu.westga.cs3151.project3.model.GameNode;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -101,12 +103,22 @@ public class Controller {
     	String newAnimalName = this.animalThinkingOfField.getText();
     	String distinguishingQuestion = this.animalQuestionField.getText();
     	boolean questionIsTrue = this.answerYesRadioButton.isSelected();
-    	this.game.addAnimalAfterWrongGuess(newAnimalName, distinguishingQuestion, questionIsTrue);
-    	this.animalThinkingOfField.clear();
-    	this.animalQuestionField.clear();
-    	this.hideAllButPane(this.startPane);
-    	this.welcomeMessageText.setVisible(true);
-    	this.iWonText.setVisible(false);
+    	try {
+    		this.game.addAnimalAfterWrongGuess(newAnimalName, distinguishingQuestion, questionIsTrue);
+        	this.animalThinkingOfField.clear();
+        	this.animalQuestionField.clear();
+        	this.hideAllButPane(this.startPane);
+        	this.welcomeMessageText.setVisible(true);
+        	this.iWonText.setVisible(false);
+    	} catch (IllegalArgumentException exception) {
+    		Alert errorPopup = new Alert(AlertType.ERROR);
+    		 
+    		errorPopup.setTitle("Error");
+    		errorPopup.setHeaderText("Invalid Input");
+    		errorPopup.setContentText(exception.getMessage());
+    		 
+    		errorPopup.showAndWait();
+    	}
     }
     
     private void hideAllButPane(Pane pane) {
