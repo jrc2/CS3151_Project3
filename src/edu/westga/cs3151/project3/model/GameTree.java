@@ -11,7 +11,8 @@ import java.util.Iterator;
  */
 public class GameTree<T> implements Iterable<T> {
 	
-	private GameNode<T> root;
+	private GameNode<String> root;
+	private GameNode<String> currNode;
 	
 	/**
 	 * Instantiates a new game tree with given root node.
@@ -19,10 +20,11 @@ public class GameTree<T> implements Iterable<T> {
 	 * @precondition none
 	 * @postcondition this.root==root;
 	 *
-	 * @param root the root node
+	 * @param rootValue the root node value
 	 */
-	public GameTree(GameNode<T> root) {
-		this.root = root;
+	public GameTree(String rootValue) {
+		this.root = new GameNode<String>(rootValue, false);
+		this.currNode = this.root;
 	}
 	
 	/**
@@ -33,7 +35,7 @@ public class GameTree<T> implements Iterable<T> {
 	 *
 	 * @return the root node of the game tree
 	 */
-	public GameNode<T> getRoot() {
+	public GameNode<String> getRoot() {
 		return this.root;
 	}
 	
@@ -45,8 +47,53 @@ public class GameTree<T> implements Iterable<T> {
 	 *
 	 * @param root the new root node
 	 */
-	public void setRoot(GameNode<T> root) {
+	public void setRoot(GameNode<String> root) {
 		this.root = root;
+	}
+	
+	/**
+	 * Gets the current node.
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 *
+	 * @return the current node
+	 */
+	public GameNode<String> getCurrNode() {
+		return this.currNode;
+	}
+	
+	/**
+	 * Sets the current node.
+	 * 
+	 * @precondition none
+	 * @postcondition this.currNode==newCurrNode
+	 *
+	 * @param newCurrNode the new current node
+	 */
+	public void setCurrNode(GameNode<String> newCurrNode) {
+		this.currNode = newCurrNode;
+	}
+	
+	public void editCurrNode(String newValue, boolean isQuestion, GameNode<String> leftChild, GameNode<String> rightChild) {
+		this.currNode.setValue(newValue);
+		this.currNode.setIsQuestionNode(isQuestion);
+		this.currNode.setLeftChild(leftChild);
+		this.currNode.setRightChild(rightChild);
+	}
+	
+	public boolean currNodeHasChild() {
+		return this.currNode.hasLeftChild() || this.currNode.hasRightChild();
+	}
+	
+	public GameNode<String> goToLeftChild() {
+		this.setCurrNode(this.currNode.getLeftChild());
+		return this.currNode;
+	}
+	
+	public GameNode<String> goToRightChild() {
+		this.setCurrNode(this.currNode.getRightChild());
+		return this.currNode;
 	}
 
 	@Override

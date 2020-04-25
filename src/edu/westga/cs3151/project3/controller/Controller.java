@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import edu.westga.cs3151.project3.model.Game;
+import edu.westga.cs3151.project3.model.GameNode;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -67,12 +68,19 @@ public class Controller {
     @FXML
     void startButtonAction(ActionEvent event) {
     	this.animalGuessPane.setVisible(true);
+    	this.setGuess(this.game.getCurrNode());
     }
     
     @FXML
     private void correctGuessClick(ActionEvent event) {
-    	this.hideAllButPane(this.startPane);
-    	this.showIWonMessage();
+    	if (!this.game.hasChildren()) {
+    		this.game.resetGame();
+    		this.hideAllButPane(this.startPane);
+        	this.showIWonMessage();
+    	} else {
+    		this.game.setNodeAfterAnswer(true);
+    		this.setGuess(this.game.getCurrNode());
+    	}
     }
     
     @FXML
@@ -80,7 +88,8 @@ public class Controller {
     	if (!this.game.hasChildren()) {
     		this.hideAllButPane(this.youWonPane);
     	} else {
-    		//TODO
+    		this.game.setNodeAfterAnswer(false);
+    		this.setGuess(this.game.getCurrNode());
     	}
     }
     
@@ -89,11 +98,18 @@ public class Controller {
     	String newAnimalName = this.animalThinkingOfField.getText();
     	String distinguishingQuestion = this.animalQuestionField.getText();
     	boolean questionIsTrue = this.answerYesRadioButton.isSelected();
+    	this.game.addAnimalAfterWrongGuess(newAnimalName, distinguishingQuestion, questionIsTrue);
+    	this.animalThinkingOfField.clear();
+    	this.animalQuestionField.clear();
+    	this.hideAllButPane(this.startPane);
+    	this.welcomeMessageText.setVisible(true);
+    	this.iWonText.setVisible(false);
     }
     
     private void hideAllButPane(Pane pane) {
     	this.animalGuessPane.setVisible(false);
     	this.youWonPane.setVisible(false);
+    	this.startPane.setVisible(false);
     	pane.setVisible(true);
     }
     
@@ -102,8 +118,13 @@ public class Controller {
     	this.iWonText.setVisible(true);
     }
     
-    private void setAnimalGuess(String animalName) {
-    	this.animalGuessText.setText("Is your animal a " + animalName + "?");
+    private void setGuess(GameNode<String> node) {
+    	if (node.getIsQuestionNode()) {
+    		this.animalGuessText.setText(node.getValue());
+    	} else {
+    		this.animalGuessText.setText("Is your animal a " + node.getValue() + "?");
+    	}
+    	
     }
 
     @FXML
@@ -122,6 +143,5 @@ public class Controller {
         assert this.answerRadioButtons != null : "fx:id=\"answerRadioButtons\" was not injected: check your FXML file 'GUI.fxml'.";
 
         this.game = new Game();
-        this.setAnimalGuess(this.game.getCurrNode().getValue());
     }
 }

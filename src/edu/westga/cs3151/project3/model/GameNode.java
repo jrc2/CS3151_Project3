@@ -15,10 +15,10 @@ public class GameNode<T> {
 	private boolean isQuestionNode;
 	
 	/**
-	 * Instantiates a new game node.
+	 * Instantiates a new game node without parent.
 	 * 
 	 * @precondition none
-	 * @postcondition this.value==value AND this.leftChild==null AND this.rightChild == null
+	 * @postcondition this.value==value AND this.leftChild==null AND this.rightChild==null
 	 * 				  AND this.isQuestionNode==isQuestionNode
 	 *
 	 * @param value the value

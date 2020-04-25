@@ -10,7 +10,8 @@ import java.util.Random;
 public class Game {
 	
 	private GameTree<String> gameTree;
-	private static final String[] INITIAL_ANIMAL_CHOICES = {"frog", "liger", "sloth", "cat", "koala", "human"};
+	private static final String[] INITIAL_ANIMAL_CHOICES = {"frog", "liger", "sloth", "cat", "koala", "human", "unicorn", "goat", "chicken", 
+															"penguin", "lobster", "porcupine", "chewbacca", "chupacabra", "owl", "water deer"};
 	
 	/**
 	 * Instantiates a new game.
@@ -20,7 +21,7 @@ public class Game {
 	 */
 	public Game() {
 		Random random = new Random();
-		int animalChoiceIndex = random.nextInt(7);
+		int animalChoiceIndex = random.nextInt(INITIAL_ANIMAL_CHOICES.length);
 		String initialAnimalName = INITIAL_ANIMAL_CHOICES[animalChoiceIndex];
 		this.gameTree = new GameTree<String>(initialAnimalName);
 	}
@@ -33,9 +34,9 @@ public class Game {
 	 *
 	 * @return the game tree
 	 */
-	public GameTree<String> getGameTree() {
-		return this.gameTree;
-	}
+//	public GameTree<String> getGameTree() {
+//		return this.gameTree;
+//	}
 	
 	/**
 	 * Gets the curr node.
@@ -58,7 +59,20 @@ public class Game {
 	 * @return true if either node has a child, false otherwise
 	 */
 	public boolean hasChildren() {
-		return this.getCurrNode().hasLeftChild() || this.getCurrNode().hasRightChild();
+		return this.gameTree.currNodeHasChild();
+	}
+	
+	public void setNodeAfterAnswer(boolean answer) {
+		if (answer) {
+			this.gameTree.goToRightChild();
+		} else {
+			this.gameTree.goToLeftChild();
+		}
+		
+	}
+	
+	public void resetGame() {
+		this.gameTree.setCurrNode(this.gameTree.getRoot());
 	}
 	
 	/**
@@ -72,27 +86,32 @@ public class Game {
 	 * @param newQuestion the distinguishing question
 	 * @param questionIsTrue true if the answer to the question is "yes", false if "no"
 	 */
-	public void addAnimalAfterWrongGuess(String newAnimal, String newQuestion, boolean questionIsTrue) {
-		if (newAnimal == null || newAnimal.isBlank()) {
+	public void addAnimalAfterWrongGuess(String newAnimalName, String newQuestion, boolean questionIsTrue) {
+		if (newAnimalName == null || newAnimalName.isBlank()) {
 			throw new IllegalArgumentException("New animal cannot be null or blank");
 		}
 		if (newQuestion == null || newQuestion.isBlank()) {
 			throw new IllegalArgumentException("New question cannot be null or blank");
 		}
 		
-		GameNode<String> oldAnimalNode = this.getCurrNode();
-		GameNode<String> newQuestionNode = new GameNode<String>(newQuestion, true);
-		GameNode<String> newAnimalNode = new GameNode<String>(newAnimal, false);
+		String oldAnimalName = this.getCurrNode().getValue();
 		
+		String newLeftValue;
+		String newRightValue;
 		if (questionIsTrue) {
-			newQuestionNode.setLeftChild(newAnimalNode);
-			newQuestionNode.setRightChild(oldAnimalNode);
+			newLeftValue = oldAnimalName;
+			newRightValue = newAnimalName;
 		} else {
-			newQuestionNode.setLeftChild(oldAnimalNode);
-			newQuestionNode.setRightChild(newAnimalNode);
+			newLeftValue = newAnimalName;
+			newRightValue = oldAnimalName;
 		}
+		
+		GameNode<String> newLeftChild = new GameNode<String>(newLeftValue, false);
+		GameNode<String> newRightChild = new GameNode<String>(newRightValue, false);
+		
+		this.gameTree.editCurrNode(newQuestion, true, newLeftChild, newRightChild);
 
-		this.gameTree.setRoot(newQuestionNode);
+		this.resetGame();
 	}
 
 }
