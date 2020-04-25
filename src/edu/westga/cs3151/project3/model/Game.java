@@ -2,6 +2,9 @@ package edu.westga.cs3151.project3.model;
 
 import java.util.Random;
 
+import edu.westga.cs3151.project3.utils.LoadFromXML;
+import edu.westga.cs3151.project3.utils.SaveToXML;
+
 /**
  * Controls the Game.
  *
@@ -113,6 +116,32 @@ public class Game {
 		
 		this.gameTree.editCurrNode(newQuestion, true, newLeftChild, newRightChild);
 
+		this.resetGame();
+	}
+	
+	/**
+	 * Saves game tree to given file.
+	 * 
+	 * @precondition none
+	 * @postcondition file written if no errors
+	 *
+	 * @param filename the filename
+	 */
+	public void saveGame(String filename) {
+		SaveToXML.writeGameTreeToXML(this.gameTree, filename);
+	}
+	
+	/**
+	 * Loads game tree from given file.
+	 * 
+	 * @precondition none
+	 * @postcondition game tree loaded if no errors
+	 *
+	 * @param filename the filename
+	 */
+	public void loadGame(String filename) {
+		GameTree<String> gameTree = LoadFromXML.loadGameTreeFromXML(filename);
+		this.gameTree = gameTree;
 		this.resetGame();
 	}
 

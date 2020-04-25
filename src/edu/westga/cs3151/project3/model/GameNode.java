@@ -30,6 +30,16 @@ public class GameNode<T> {
 		this.rightChild = null;
 		this.isQuestionNode = isQuestionNode;
 	}
+	
+	/**
+	 * Default game node constructor
+	 * 
+	 * @precondition none
+	 * @postcondition this.value==null AND this.isQuestionNode==true;
+	 */
+	public GameNode() {
+		this(null, true);
+	}
 
 	/**
 	 * Gets the node's value.

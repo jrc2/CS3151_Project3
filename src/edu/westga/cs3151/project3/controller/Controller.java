@@ -1,5 +1,6 @@
 package edu.westga.cs3151.project3.controller;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -13,6 +14,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 /**
  * The Class GUICodeBehind.
@@ -124,6 +127,33 @@ public class Controller {
     	} else {
     		this.animalGuessText.setText("Is your animal a " + node.getValue() + "?");
     	}
+    	
+    }
+    
+    @FXML
+    void saveGameAction(ActionEvent event) {
+    	FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Open Game Save File");
+		fileChooser.getExtensionFilters().add(new ExtensionFilter("Animal Tree File", "*.atf"));
+		File selectedFile = fileChooser.showSaveDialog(null);
+		
+		if (selectedFile != null) {
+			this.game.saveGame(selectedFile.getPath());
+		}
+    	
+    }
+    
+    @FXML
+    void loadGameClick(ActionEvent event) {
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Open Game Save File");
+		fileChooser.getExtensionFilters().add(new ExtensionFilter("Animal Tree File", "*.atf"));
+		File selectedFile = fileChooser.showOpenDialog(null);
+		
+		if (selectedFile != null) {
+	    	this.game.loadGame(selectedFile.getPath());
+		}
+		
     	
     }
 

@@ -26,6 +26,16 @@ public class GameTree<T> {
 	}
 	
 	/**
+	 * Default game tree constructor.
+	 * 
+	 * @precondition none
+	 * @postcondition this.rootValue==null
+	 */
+	public GameTree() {
+		this(null);
+	}
+	
+	/**
 	 * Gets the root node of the game tree.
 	 * 
 	 * @precondition none
