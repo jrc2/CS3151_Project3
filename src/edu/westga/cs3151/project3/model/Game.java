@@ -2,8 +2,8 @@ package edu.westga.cs3151.project3.model;
 
 import java.util.Random;
 
-import edu.westga.cs3151.project3.utils.LoadFromXML;
-import edu.westga.cs3151.project3.utils.SaveToXML;
+import edu.westga.cs3151.project3.utils.FileIn;
+import edu.westga.cs3151.project3.utils.FileOut;
 
 /**
  * Controls the Game.
@@ -128,7 +128,7 @@ public class Game {
 	 * @param filename the filename
 	 */
 	public void saveGame(String filename) {
-		SaveToXML.writeGameTreeToXML(this.gameTree, filename);
+		FileOut.writeGameTreeToXML(this.gameTree, filename);
 	}
 	
 	/**
@@ -140,7 +140,7 @@ public class Game {
 	 * @param filename the filename
 	 */
 	public void loadGame(String filename) {
-		GameTree<String> gameTree = LoadFromXML.loadGameTreeFromXML(filename);
+		GameTree<String> gameTree = FileIn.loadGameTreeFromXML(filename);
 		this.gameTree = gameTree;
 		this.resetGame();
 	}

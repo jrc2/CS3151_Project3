@@ -12,7 +12,7 @@ import edu.westga.cs3151.project3.model.GameTree;
  * 
  * @author John Chittam
  */
-public class LoadFromXML {
+public class FileIn {
 
 	/**
 	 * Loads a game tree from XML.

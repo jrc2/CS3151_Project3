@@ -12,7 +12,7 @@ import edu.westga.cs3151.project3.model.GameTree;
  * 
  * @author John Chittam
  */
-public class SaveToXML {
+public class FileOut {
 
 	/**
 	 * Writes a game tree to XML.
