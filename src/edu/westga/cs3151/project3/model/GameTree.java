@@ -1,7 +1,5 @@
 package edu.westga.cs3151.project3.model;
 
-import java.util.Iterator;
-
 /**
  * The GameTree
  * 
@@ -75,6 +73,18 @@ public class GameTree<T> {
 		this.currNode = newCurrNode;
 	}
 	
+	/**
+	 * Edits the current node.
+	 * 
+	 * @precondition none
+	 * @postcondition this.currNode.value==newValue AND this.currNode.isQuestion==isQuestion AND 
+	 * 				  this.currNode.leftChild==leftChild AND this.currNode.rightChild==rightChild
+	 *
+	 * @param newValue the new value
+	 * @param isQuestion the new is question value
+	 * @param leftChild the new left child
+	 * @param rightChild the new right child
+	 */
 	public void editCurrNode(String newValue, boolean isQuestion, GameNode<String> leftChild, GameNode<String> rightChild) {
 		this.currNode.setValue(newValue);
 		this.currNode.setIsQuestionNode(isQuestion);
@@ -82,18 +92,33 @@ public class GameTree<T> {
 		this.currNode.setRightChild(rightChild);
 	}
 	
+	/**
+	 * Tells if the current node has a child
+	 *
+	 * @return true if current node has a child, false if not
+	 */
 	public boolean currNodeHasChild() {
 		return this.currNode.hasLeftChild() || this.currNode.hasRightChild();
 	}
 	
-	public GameNode<String> goToLeftChild() {
+	/**
+	 * Sets current node to its left child
+	 * 
+	 * @precondition none
+	 * @postcondition this.currNode==this.currNode.leftChild
+	 */
+	public void goToLeftChild() {
 		this.setCurrNode(this.currNode.getLeftChild());
-		return this.currNode;
 	}
 	
-	public GameNode<String> goToRightChild() {
+	/**
+	 * Sets current node to its right child
+	 * 
+	 * @precondition none
+	 * @postcondition this.currNode==this.currNode.rightChild
+	 */
+	public void goToRightChild() {
 		this.setCurrNode(this.currNode.getRightChild());
-		return this.currNode;
 	}
 
 }

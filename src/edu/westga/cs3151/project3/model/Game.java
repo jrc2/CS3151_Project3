@@ -27,18 +27,6 @@ public class Game {
 	}
 	
 	/**
-	 * Gets the game tree.
-	 * 
-	 * @precondition none
-	 * @postcondition none
-	 *
-	 * @return the game tree
-	 */
-//	public GameTree<String> getGameTree() {
-//		return this.gameTree;
-//	}
-	
-	/**
 	 * Gets the curr node.
 	 * 
 	 * @precondition none
@@ -62,6 +50,14 @@ public class Game {
 		return this.gameTree.currNodeHasChild();
 	}
 	
+	/**
+	 * Advances curr node to proper child based on answer to question.
+	 * 
+	 * @precondition none
+	 * @postcondition gameTree.currNode==gameTree.currNode.left || gameTree.currNode==gameTree.currNode.right
+	 *
+	 * @param answer true if "yes", false if "no"
+	 */
 	public void setNodeAfterAnswer(boolean answer) {
 		if (answer) {
 			this.gameTree.goToRightChild();
@@ -71,6 +67,12 @@ public class Game {
 		
 	}
 	
+	/**
+	 * Sets curr node back to root.
+	 * 
+	 * @precondition none
+	 * @postcondition this.gameTree.currNode==this.gameTree.root
+	 */
 	public void resetGame() {
 		this.gameTree.setCurrNode(this.gameTree.getRoot());
 	}
@@ -82,7 +84,7 @@ public class Game {
 	 * @precondition newAnimal!=null AND !newAnimal.isBlank() AND newQuestion!=null AND !newQuestion.isBlank()
 	 * @postcondition new animal and question are added to the tree
 	 *
-	 * @param newAnimal the new animal
+	 * @param newAnimalName the new animal
 	 * @param newQuestion the distinguishing question
 	 * @param questionIsTrue true if the answer to the question is "yes", false if "no"
 	 */
