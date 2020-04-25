@@ -9,7 +9,7 @@ import java.util.Iterator;
  *
  * @param <T> the type of node values
  */
-public class GameTree<T> implements Iterable<T> {
+public class GameTree<T> {
 	
 	private GameNode<String> root;
 	private GameNode<String> currNode;
@@ -94,12 +94,6 @@ public class GameTree<T> implements Iterable<T> {
 	public GameNode<String> goToRightChild() {
 		this.setCurrNode(this.currNode.getRightChild());
 		return this.currNode;
-	}
-
-	@Override
-	public Iterator<T> iterator() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
