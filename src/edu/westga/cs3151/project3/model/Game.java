@@ -140,8 +140,8 @@ public class Game {
 	 * @param filename the filename
 	 */
 	public void loadGame(String filename) {
-		GameTree<String> gameTree = FileIn.loadGameTreeFromXML(filename);
-		this.gameTree = gameTree;
+		GameTree<?> gameTree = FileIn.loadGameTreeFromXML(filename);
+		this.gameTree = new GameTree<String>(gameTree);
 		this.resetGame();
 	}
 

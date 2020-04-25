@@ -26,13 +26,30 @@ public class GameTree<T> {
 	}
 	
 	/**
+	 * Instantiates a new game tree from a generic game tree.
+	 * 
+	 * @precondition genericTree!=null
+	 * @postcondition this.root==genericTree.root AND this.currNode==genericTree.currNode
+	 *
+	 * @param genericTree the generic game tree
+	 */
+	public GameTree(GameTree<?> genericTree) {
+		if (genericTree == null) {
+			throw new IllegalArgumentException("genericTree cannot be null");
+		}
+		
+		this.root = genericTree.currNode;
+		this.currNode = genericTree.currNode;
+	}
+	
+	/**
 	 * Default game tree constructor.
 	 * 
 	 * @precondition none
-	 * @postcondition this.rootValue==null
+	 * @postcondition this.rootValue==""
 	 */
 	public GameTree() {
-		this(null);
+		this("");
 	}
 	
 	/**

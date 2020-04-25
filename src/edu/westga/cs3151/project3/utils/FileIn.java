@@ -24,7 +24,7 @@ public class FileIn {
 	 * 
 	 * @return the loaded game tree
 	 */
-	public static GameTree<String> loadGameTreeFromXML(String filename) {
+	public static GameTree<?> loadGameTreeFromXML(String filename) {
 		XMLDecoder decoder = null;
 		
 		try {
@@ -33,7 +33,7 @@ public class FileIn {
 			System.out.println("File " + filename + " not found");
 		}
 		
-		GameTree<String> gameTree = (GameTree<String>) decoder.readObject();
+		GameTree<?> gameTree = (GameTree<?>) decoder.readObject();
 		return gameTree;
 	}
 }
